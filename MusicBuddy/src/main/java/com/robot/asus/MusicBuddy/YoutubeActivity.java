@@ -1,17 +1,21 @@
 package com.robot.asus.MusicBuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
-
 
 import com.asus.robotframework.API.RobotCallback;
 import com.asus.robotframework.API.RobotCmdState;
 import com.asus.robotframework.API.RobotErrorCode;
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
@@ -25,28 +29,45 @@ public class YoutubeActivity extends RobotActivity {
     YouTubePlayerView mYoutubePlayerView;
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
 
-    private static String listId; //等待傳值
+    // firebase
+    FirebaseFirestore db;
+
+    // 變數
+    private static String userId;
+    private static String situationListId;
+    private static String situation;
 
     public YoutubeActivity() {
         super(robotCallback, robotListenCallback);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
 
+        db = FirebaseFirestore.getInstance();
+        // 接值
+        Intent i = this.getIntent();
+        userId = i.getStringExtra("userId");
+        situation= i.getStringExtra("situation");
+        Log.d(TAG, "onCreate: userId = " + userId + "situation = " + situation);
+        getSituationListId(userId, situation, new situationListIdCallback() {
+            @Override
+            public void onCallback(String situationListId) {
+                Log.d(TAG, "onCallback: situationListId  = " + situationListId);
+            }
+        });
 
         // 初始化YoutubePlayer開始
-        Log.d(TAG, "onCreate: Starting. ListId = " + listId);
+        Log.d(TAG, "onCreate: Starting. ListId = " + situationListId);
         mYoutubePlayerView = findViewById(R.id.youTubePlayerView);
         mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d(TAG, "onCreate: Done Initializing .");
 
-                youTubePlayer.loadPlaylist(listId);
+                youTubePlayer.loadPlaylist(situationListId);
             }
 
             @Override
@@ -64,7 +85,7 @@ public class YoutubeActivity extends RobotActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        robotAPI.robot.speak("好喔，馬上為你破放清單");
+        robotAPI.robot.speak("好喔，馬上為你播放清單");
     }
 
     @Override
@@ -129,5 +150,31 @@ public class YoutubeActivity extends RobotActivity {
     };
     // Robot : end
 
+    //DB
+    public interface situationListIdCallback {
+        void onCallback(String situationListId);
+    }
+
+    private void getSituationListId(final String userId, final String situation, final YoutubeActivity.situationListIdCallback callback) {
+
+        DocumentReference docRef = db.collection("users").document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        situationListId = document.getData().get(situation).toString();
+                        Log.d(TAG, "DocumentSnapshot data: situationListId = " + situationListId);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                    callback.onCallback(situationListId);
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
 
 }

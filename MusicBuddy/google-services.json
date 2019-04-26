@@ -1,0 +1,101 @@
+{
+  "project_info": {
+    "project_number": "428007145775",
+    "firebase_url": "https://test1-79888.firebaseio.com",
+    "project_id": "test1-79888",
+    "storage_bucket": "test1-79888.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428007145775:android:273ebd7df39aca85",
+        "android_client_info": {
+          "package_name": "com.github.pwittchen.neurosky.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428007145775-gf1aid8cg74p5233ruipbba156g1d7to.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.pwittchen.neurosky.app",
+            "certificate_hash": "e8d510db03f675983c50eb2772df34561cb1def4"
+          }
+        },
+        {
+          "client_id": "428007145775-lo4sieis3mh95r542svt6d4bpsj3fp41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.pwittchen.neurosky.app",
+            "certificate_hash": "d0f67c73e42523002f42d48cecf12f38f7eac2b5"
+          }
+        },
+        {
+          "client_id": "428007145775-js18cem90oberpuhg2e9nf60bfh376k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACAT7JfIxqlaX2lBYxLYhpZ71hWMICZbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428007145775-js18cem90oberpuhg2e9nf60bfh376k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428007145775:android:09707ded4fb93c4c",
+        "android_client_info": {
+          "package_name": "com.robot.asus.MusicBuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428007145775-lbb2kgss863dr3fs2qmq41rfb21r1tsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.robot.asus.MusicBuddy",
+            "certificate_hash": "ca25161aa44af87e1b3363c36bf99b969e032324"
+          }
+        },
+        {
+          "client_id": "428007145775-o7b0om4tf6eqhp32cp37dqjhdnte4sva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.robot.asus.MusicBuddy",
+            "certificate_hash": "a7654f60fb78ea50b3a52258c9912585dbab83bf"
+          }
+        },
+        {
+          "client_id": "428007145775-js18cem90oberpuhg2e9nf60bfh376k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACAT7JfIxqlaX2lBYxLYhpZ71hWMICZbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428007145775-js18cem90oberpuhg2e9nf60bfh376k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\Lawrence\\AndroidStudioProjects\\ZenboSDK_musicbuddy\\MusicBuddy\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Lawrence\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\f15aef2814d4135a00c58f7d1e6b7dcd\\res\\values-v26\\values-v26.xml",
+                    "source": "C:\\Users\\Lawrence\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\a2b20a57bfc05bfda815faca8200e9d1\\res\\values-v26\\values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

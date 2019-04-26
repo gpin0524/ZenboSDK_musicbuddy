@@ -20,7 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.robot.asus.MusicBuddy.YoutubeActivity" />
-        <activity android:name="com.robot.asus.MusicBuddy.YoutubePlayerActivity" />
 
         <meta-data
             android:name="zenbo_ds_domainuuid"
@@ -39,6 +38,13 @@
                 <category android:name="com.asus.intent.category.COMPANION_MODE" />
             </intent-filter>
         </activity>
+
+        <service android:name="com.google.firebase.components.ComponentDiscoveryService" >
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+        </service>
+
         <activity
             android:name="pub.devrel.easypermissions.AppSettingsDialogHolderActivity"
             android:exported="false"
@@ -67,6 +73,12 @@
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.robot.asus.MusicBuddy.firebaseinitprovider"
+            android:exported="false"
+            android:initOrder="100" />
 
         <meta-data
             android:name="com.google.android.gms.version"
