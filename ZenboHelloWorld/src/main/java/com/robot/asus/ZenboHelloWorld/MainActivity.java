@@ -9,6 +9,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class MainActivity extends RobotActivity {
 
     public static RobotCallback robotCallback = new RobotCallback() {
@@ -76,5 +78,15 @@ public class MainActivity extends RobotActivity {
     protected void onResume() {
         super.onResume();
         robotAPI.robot.speak("Hello world. I am Zenbo. Nice to meet you.");
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
     }
 }

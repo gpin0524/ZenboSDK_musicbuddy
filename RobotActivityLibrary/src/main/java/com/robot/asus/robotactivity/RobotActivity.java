@@ -7,8 +7,10 @@ import android.view.View;
 import com.asus.robotframework.API.RobotAPI;
 import com.asus.robotframework.API.RobotCallback;
 
+import java.util.List;
 
-public class RobotActivity extends Activity{
+
+public abstract class RobotActivity extends Activity{
     public RobotAPI robotAPI;
     RobotCallback robotCallback;
     RobotCallback.Listen robotListenCallback;
@@ -49,4 +51,8 @@ public class RobotActivity extends Activity{
         super.onDestroy();
         robotAPI.release();
     }
+
+    public abstract void onPermissionsGranted(int requestCode, List<String> list);
+
+    public abstract void onPermissionsDenied(int requestCode, List<String> list);
 }
