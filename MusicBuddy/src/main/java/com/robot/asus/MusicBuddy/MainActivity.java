@@ -83,13 +83,14 @@ public class MainActivity extends RobotActivity {
         // Youtube API : start
         mOutputText = findViewById(R.id.mOutputText);
         mOutputText.setMovementMethod(new ScrollingMovementMethod());
-        getResultsFromApi();
+
         //mProgress = new ProgressDialog(this);
         //mProgress.setMessage("Calling YouTube Data API ...");
 
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
+        getResultsFromApi();
         // Youtube API  : end
     }
 
