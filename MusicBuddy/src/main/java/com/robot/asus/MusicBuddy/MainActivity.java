@@ -1,13 +1,24 @@
 package com.robot.asus.MusicBuddy;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.asus.robotframework.API.RobotCallback;
 import com.asus.robotframework.API.RobotCmdState;
 import com.asus.robotframework.API.RobotErrorCode;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.robot.asus.robotactivity.RobotActivity;
 import com.asus.robotframework.API.SpeakConfig;
 import com.asus.robotframework.API.RobotFace;
@@ -20,14 +31,61 @@ public class MainActivity extends RobotActivity {
     public final static String DOMAIN = "DF0AAD95A4FB4C1480B7019B3EAE5FA6";
 
     private static TextView mTextView;
+    private static TextView fbTextView;
+    private static Button getData;
+
+    private String getRobotSituation;
+
+
+    private String situationListId;
+    private String userId;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mTextView = findViewById(R.id.textView);
+
+         //顯示資料要用的按鈕以及文字框
+        fbTextView = findViewById(R.id.fireBase_textView);
+        getData = findViewById(R.id.button);
+
+
+
+
+
     }
+
+
+    // db 同異步問題
+    public interface situationListIdCallback {
+        void onCallback(String situationListId);
+    }
+
+    private void getSituationListId(final String userId,final String situation, final situationListIdCallback callback){
+
+        DocumentReference docRef = db.collection("users").document("UC62jJylosDspoHKz1wL0PdA");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        situationListId = document.getData().get(situation).toString();
+                        Log.d(TAG, "DocumentSnapshot data: " + situationListId);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                    callback.onCallback(situationListId);
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void onResume() {
@@ -41,6 +99,8 @@ public class MainActivity extends RobotActivity {
 
         // listen user utterance
         robotAPI.robot.speakAndListen("歡迎使用Music Buddy，請問你要在什麼狀態下聽音樂呢？", new SpeakConfig().timeout(20));
+
+
     }
 
     @Override
@@ -115,6 +175,7 @@ public class MainActivity extends RobotActivity {
 
                 if(SluResultSituation!= null) {
                     mTextView.setText("使用者狀態 " + SluResultSituation);
+                   // getSituationListId(
                 }
             }
         }

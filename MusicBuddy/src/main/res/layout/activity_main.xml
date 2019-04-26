@@ -19,4 +19,23 @@
         android:textSize = "45dp"
         android:layout_centerHorizontal="true"
         />
+
+    <TextView
+        android:id="@+id/fireBase_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="this is firebase data"
+        android:layout_below="@+id/textView"
+        android:textSize = "40dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET DB DATA"
+        android:layout_below="@+id/fireBase_textView"/>
+
+
 </RelativeLayout>
