@@ -20,6 +20,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class WheelLightsSetBrightness extends RobotActivity {
 
     private EditText EditText_active;
@@ -88,6 +90,15 @@ public class WheelLightsSetBrightness extends RobotActivity {
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
+    }
 
 
     public static RobotCallback robotCallback = new RobotCallback() {

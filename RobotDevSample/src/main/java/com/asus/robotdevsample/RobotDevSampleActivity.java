@@ -15,6 +15,8 @@ import com.asus.robotframework.API.RobotFace;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class RobotDevSampleActivity extends com.robot.asus.robotactivity.RobotActivity {
     private ListView listView;
     private String[] listViewitems;
@@ -76,6 +78,16 @@ public class RobotDevSampleActivity extends com.robot.asus.robotactivity.RobotAc
 
         //hide expression
         robotAPI.robot.setExpression(RobotFace.HIDEFACE);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
     }
 
     public RobotDevSampleActivity() {

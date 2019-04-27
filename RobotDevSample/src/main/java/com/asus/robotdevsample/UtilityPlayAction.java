@@ -17,6 +17,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class UtilityPlayAction extends RobotActivity {
 
     private Button btn_start;
@@ -67,10 +69,15 @@ public class UtilityPlayAction extends RobotActivity {
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
 
+    }
 
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
 
-
+    }
 
 
     public static RobotCallback robotCallback = new RobotCallback() {

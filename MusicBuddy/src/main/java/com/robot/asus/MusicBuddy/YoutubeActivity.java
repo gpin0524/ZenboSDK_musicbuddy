@@ -1,5 +1,7 @@
 package com.robot.asus.MusicBuddy;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,11 +9,17 @@ import android.util.Log;
 
 import com.asus.robotframework.API.RobotCallback;
 import com.asus.robotframework.API.RobotCmdState;
+import com.asus.robotframework.API.RobotCommand;
 import com.asus.robotframework.API.RobotErrorCode;
+import com.asus.robotframework.API.RobotFace;
+import com.asus.robotframework.API.RobotUtil;
+import com.asus.robotframework.API.WheelLights;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,13 +28,14 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class YoutubeActivity extends RobotActivity {
-    private static final String TAG = "YoutubePlayerActivity";
+    private static final String TAG = "GpinYoutubePlayerAc";
 
-    YouTubePlayerView mYoutubePlayerView;
+    YouTubePlayerFragment mYouTubePlayerFragment;
     YouTubePlayer.OnInitializedListener mOnInitializedListener;
 
     // firebase
@@ -34,7 +43,7 @@ public class YoutubeActivity extends RobotActivity {
 
     // 變數
     private static String userId;
-    private static String situationListId;
+    String situationListId;
     private static String situation;
 
     public YoutubeActivity() {
@@ -51,34 +60,104 @@ public class YoutubeActivity extends RobotActivity {
         Intent i = this.getIntent();
         userId = i.getStringExtra("userId");
         situation= i.getStringExtra("situation");
-        Log.d(TAG, "onCreate: userId = " + userId + "situation = " + situation);
+        Log.d(TAG, "onCreate: 接值 userId = " + userId + "situation = " + situation);
+
+        // callback
         getSituationListId(userId, situation, new situationListIdCallback() {
             @Override
-            public void onCallback(String situationListId) {
+            public void onCallback(final String situationListId) {
                 Log.d(TAG, "onCallback: situationListId  = " + situationListId);
+                // 初始化YoutubePlayer開始
+                Log.d(TAG, "onCreate: Starting. ListId = " + situationListId);
+
+
+                mYouTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
+                mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
+                    @Override
+                    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                        Log.d(TAG, "onCreate: Done Initializing .");
+
+                        youTubePlayer.loadPlaylist(situationListId);
+                        youTubePlayer.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+                            @Override
+                            public void onLoading() {
+                                robotAPI.robot.setExpression(RobotFace.EXPECTING);
+                            }
+
+                            @Override
+                            public void onLoaded(String s) {
+
+                            }
+
+                            @Override
+                            public void onAdStarted() {
+
+                            }
+
+                            @Override
+                            public void onVideoStarted() {
+                                robotAPI.robot.setExpression(RobotFace.SINGING);
+                                robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
+                                robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
+                                robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                List<Integer> playActionItemList = new ArrayList<>();
+                                playActionItemList.add(21);
+                                playActionItemList.add(24);
+                                playActionItemList.add(27);
+                                int action = playActionItemList.get((int)(Math.random()*(playActionItemList.size() - 1)));
+                                robotAPI.utility.playAction(action);
+                                Log.d(TAG, "onVideoStarted: action = " + action);
+
+                            }
+
+                            @Override
+                            public void onVideoEnded() {
+                                robotAPI.robot.setExpression(RobotFace.DEFAULT);
+                                robotAPI.cancelCommand(RobotCommand.MOTION_PLAY_ACTION.getValue());
+                            }
+
+                            @Override
+                            public void onError(YouTubePlayer.ErrorReason errorReason) {
+
+                            }
+                        });
+
+                        youTubePlayer.setPlaylistEventListener(new YouTubePlayer.PlaylistEventListener() {
+                            @Override
+                            public void onPrevious() {
+
+                            }
+
+                            @Override
+                            public void onNext() {
+
+                            }
+
+                            @Override
+                            public void onPlaylistEnded() {
+                                robotAPI.robot.setExpression(RobotFace.DEFAULT);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                        Log.d(TAG, "onCreate: Failed to Initializing .");
+                    }
+                };
+
+                Log.d(TAG, "onCreate: Initializing youtube player...");
+
+                mYouTubePlayerFragment.initialize(YoutubeConfig.getApiKey(), mOnInitializedListener);
+                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                //transaction.add(R.id.youtube_fragment, mYouTubePlayerFragment).commit();
+
+                // 初始化YoutubePlayer結束
+
             }
         });
 
-        // 初始化YoutubePlayer開始
-        Log.d(TAG, "onCreate: Starting. ListId = " + situationListId);
-        mYoutubePlayerView = findViewById(R.id.youTubePlayerView);
-        mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                Log.d(TAG, "onCreate: Done Initializing .");
 
-                youTubePlayer.loadPlaylist(situationListId);
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-                Log.d(TAG, "onCreate: Failed to Initializing .");
-            }
-        };
-
-        Log.d(TAG, "onCreate: Initializing youtube player...");
-        mYoutubePlayerView.initialize(YoutubeConfig.getApiKey(), mOnInitializedListener);
-        // 初始化YoutubePlayer結束
     }
 
     // Robot : start
@@ -86,6 +165,7 @@ public class YoutubeActivity extends RobotActivity {
     protected void onResume() {
         super.onResume();
         robotAPI.robot.speak("好喔，馬上為你播放清單");
+        robotAPI.robot.setExpression(RobotFace.DEFAULT);
     }
 
     @Override

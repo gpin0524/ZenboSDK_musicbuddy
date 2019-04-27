@@ -124,6 +124,16 @@ public class VisionRequestDetectPerson extends RobotActivity {
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
+    }
+
 
     public static RobotCallback robotCallback = new RobotCallback() {
         @Override

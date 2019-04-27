@@ -15,6 +15,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class VisionActivity extends RobotActivity {
     private ListView listView;
     private String[] listViewitems;
@@ -58,7 +60,15 @@ public class VisionActivity extends RobotActivity {
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
 
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
+    }
 
 
     public static RobotCallback robotCallback = new RobotCallback() {

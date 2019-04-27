@@ -1642,7 +1642,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>direct, barriers, chains</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>groups</td><td>20</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>7</td><td></td></tr>
@@ -3061,7 +3061,7 @@ public final class R {
     public static final int withText=0x7f070090;
     public static final int wrap=0x7f070091;
     public static final int wrap_content=0x7f070092;
-    public static final int youTubePlayerView=0x7f070093;
+    public static final int youtube_fragment=0x7f070093;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -3183,11 +3183,12 @@ public final class R {
     public static final int google_app_id=0x7f0b0036;
     public static final int google_crash_reporting_api_key=0x7f0b0037;
     public static final int google_storage_bucket=0x7f0b0038;
-    public static final int project_id=0x7f0b0039;
-    public static final int rationale_ask_again=0x7f0b003a;
-    public static final int search_menu_title=0x7f0b003b;
-    public static final int status_bar_notification_info_overflow=0x7f0b003c;
-    public static final int title_settings_dialog=0x7f0b003d;
+    public static final int hello_blank_fragment=0x7f0b0039;
+    public static final int project_id=0x7f0b003a;
+    public static final int rationale_ask_again=0x7f0b003b;
+    public static final int search_menu_title=0x7f0b003c;
+    public static final int status_bar_notification_info_overflow=0x7f0b003d;
+    public static final int title_settings_dialog=0x7f0b003e;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0c0000;
@@ -7638,7 +7639,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>direct, barriers, chains</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>groups</td><td>20</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>7</td><td></td></tr>

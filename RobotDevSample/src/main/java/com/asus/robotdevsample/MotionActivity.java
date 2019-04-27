@@ -15,6 +15,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class MotionActivity extends RobotActivity {
     private ListView listView;
     private String[] listViewitems;
@@ -55,6 +57,16 @@ public class MotionActivity extends RobotActivity {
                 }
             }
         });
+
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
 
     }
 

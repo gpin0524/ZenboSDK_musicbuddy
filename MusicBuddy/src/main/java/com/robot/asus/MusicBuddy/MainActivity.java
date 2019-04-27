@@ -23,6 +23,7 @@ import com.asus.robotframework.API.RobotCmdState;
 import com.asus.robotframework.API.RobotErrorCode;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.youtube.player.YouTubePlayer;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
@@ -31,6 +32,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ExponentialBackOff;
+import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
 import com.google.api.services.youtube.model.Channel;
 import com.google.api.services.youtube.model.ChannelListResponse;
@@ -51,7 +53,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends RobotActivity {
     // Zenbo Dialog
-    public final static String TAG = "MainActivity";
+    public final static String TAG = "Gpin_MainActivity";
     public final static String DOMAIN = "DF0AAD95A4FB4C1480B7019B3EAE5FA6";
 
     // Youtube
@@ -72,13 +74,15 @@ public class MainActivity extends RobotActivity {
     GoogleAccountCredential mCredential;
 
     // 變數
-    String userId;
+    private static String userId;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        context = this;
         mTextView = findViewById(R.id.textView);
         // Youtube API : start
         mOutputText = findViewById(R.id.mOutputText);
@@ -100,7 +104,7 @@ public class MainActivity extends RobotActivity {
 
         // close faical
         //robotAPI.robot.setExpression(com.asus.robotframework.API.RobotFace.HIDEFACE);
-
+        robotAPI.robot.setExpression(RobotFace.DEFAULT);
         // jump dialog domain
         robotAPI.robot.jumpToPlan(DOMAIN, "ThisPlanLaunchingThisApp");
 
@@ -180,6 +184,11 @@ public class MainActivity extends RobotActivity {
 
                 if(SluResultSituation!= null) {
                     mTextView.setText("使用者狀態 " + SluResultSituation);
+                    Log.d(TAG, "onResult: 傳值  situation = " + SluResultSituation + "  userId = " + userId);
+                    Intent i = new Intent(context, YoutubeActivity.class);
+                    i.putExtra("situation", SluResultSituation);
+                    i.putExtra("userId", userId);
+                    context.startActivity(i);
                 }
             }
         }
@@ -439,16 +448,18 @@ public class MainActivity extends RobotActivity {
          */
 
         private List<String> getDataFromApi() throws IOException {
-            // Get a list of up to 10 files.
+            YouTube.Channels.List channelRequest = mService.channels()
+                    .list("contentDetails")
+                    .setMine(true)
+                    .setFields("items(id,contentDetails),nextPageToken,pageInfo");
+            ChannelListResponse channelResult = channelRequest.execute();
+            List<Channel> channelsList = channelResult.getItems();
+
             List<String> channelInfo = new ArrayList<String>();
-            ChannelListResponse result = mService.channels().list("snippet,contentDetails,statistics")
-                    .setForUsername("GoogleDevelopers")
-                    .execute();
-            List<Channel> channels = result.getItems();
-            if (channels != null) {
-                Channel channel = channels.get(0);
-                channelInfo.add(channel.getId());
-                userId = channel.getId();
+
+            if (channelsList != null) {
+                userId = channelsList.get(0).getId();
+                channelInfo.add(userId);
             }
             return channelInfo;
         }

@@ -809,7 +809,7 @@ int id wide 0x7f07008f
 int id withText 0x7f070090
 int id wrap 0x7f070091
 int id wrap_content 0x7f070092
-int id youTubePlayerView 0x7f070093
+int id youtube_fragment 0x7f070093
 int integer abc_config_activityDefaultDur 0x7f080000
 int integer abc_config_activityShortDur 0x7f080001
 int integer cancel_button_image_alpha 0x7f080002
@@ -923,11 +923,12 @@ int string google_api_key 0x7f0b0035
 int string google_app_id 0x7f0b0036
 int string google_crash_reporting_api_key 0x7f0b0037
 int string google_storage_bucket 0x7f0b0038
-int string project_id 0x7f0b0039
-int string rationale_ask_again 0x7f0b003a
-int string search_menu_title 0x7f0b003b
-int string status_bar_notification_info_overflow 0x7f0b003c
-int string title_settings_dialog 0x7f0b003d
+int string hello_blank_fragment 0x7f0b0039
+int string project_id 0x7f0b003a
+int string rationale_ask_again 0x7f0b003b
+int string search_menu_title 0x7f0b003c
+int string status_bar_notification_info_overflow 0x7f0b003d
+int string title_settings_dialog 0x7f0b003e
 int style AlertDialog_AppCompat 0x7f0c0000
 int style AlertDialog_AppCompat_Light 0x7f0c0001
 int style Animation_AppCompat_Dialog 0x7f0c0002

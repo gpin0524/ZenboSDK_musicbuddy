@@ -4,11 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MusicBuddy/MusicBuddy.iml" filepath="$PROJECT_DIR$/MusicBuddy/MusicBuddy.iml" />
       <module fileurl="file://$PROJECT_DIR$/RobotActivityLibrary/RobotActivityLibrary.iml" filepath="$PROJECT_DIR$/RobotActivityLibrary/RobotActivityLibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RobotDevSample/RobotDevSample.iml" filepath="$PROJECT_DIR$/RobotDevSample/RobotDevSample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RobotSensorSample/RobotSensorSample.iml" filepath="$PROJECT_DIR$/RobotSensorSample/RobotSensorSample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZenboDialogSample/ZenboDialogSample.iml" filepath="$PROJECT_DIR$/ZenboDialogSample/ZenboDialogSample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZenboGoToLocation/ZenboGoToLocation.iml" filepath="$PROJECT_DIR$/ZenboGoToLocation/ZenboGoToLocation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZenboHelloWorld/ZenboHelloWorld.iml" filepath="$PROJECT_DIR$/ZenboHelloWorld/ZenboHelloWorld.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZenboSDK_musicbuddy.iml" filepath="$PROJECT_DIR$/ZenboSDK_musicbuddy.iml" />
     </modules>
   </component>

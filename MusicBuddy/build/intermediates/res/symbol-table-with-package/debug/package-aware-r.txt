@@ -810,7 +810,7 @@ id wide
 id withText
 id wrap
 id wrap_content
-id youTubePlayerView
+id youtube_fragment
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer cancel_button_image_alpha
@@ -924,6 +924,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello_blank_fragment
 string project_id
 string rationale_ask_again
 string search_menu_title

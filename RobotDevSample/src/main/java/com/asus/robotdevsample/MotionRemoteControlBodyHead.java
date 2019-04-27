@@ -14,6 +14,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 
 public class MotionRemoteControlBodyHead extends RobotActivity {
 
@@ -32,6 +34,16 @@ public class MotionRemoteControlBodyHead extends RobotActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
     }
 
     @Override

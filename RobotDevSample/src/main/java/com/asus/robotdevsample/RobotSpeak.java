@@ -16,6 +16,8 @@ import com.robot.asus.robotactivity.RobotActivity;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class RobotSpeak extends RobotActivity {
     private Button btn_start_speak, btn_stop_speak;
     private EditText mEdit;
@@ -53,7 +55,15 @@ public class RobotSpeak extends RobotActivity {
 
     }
 
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
 
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+
+    }
 
 
     public static RobotCallback robotCallback = new RobotCallback() {
