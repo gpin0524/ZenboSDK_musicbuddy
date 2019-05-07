@@ -101,9 +101,11 @@ public class YoutubeActivity extends RobotActivity {
                                 robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
                                 robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
                                 List<Integer> playActionItemList = new ArrayList<>();
-                                playActionItemList.add(21);
-                                playActionItemList.add(24);
-                                playActionItemList.add(27);
+                                playActionItemList.add(15); // Dance_b_1_loop
+                                playActionItemList.add(17); // Music_1_loop
+                                playActionItemList.add(21); // Dance_s_1_loop
+                                playActionItemList.add(24); //  Dance_2_loop
+                                playActionItemList.add(27); // Dance_3_loop
                                 int action = playActionItemList.get((int)(Math.random()*(playActionItemList.size() - 1)));
                                 robotAPI.utility.playAction(action);
                                 Log.d(TAG, "onVideoStarted: action = " + action);
@@ -122,6 +124,7 @@ public class YoutubeActivity extends RobotActivity {
                             }
                         });
 
+
                         youTubePlayer.setPlaylistEventListener(new YouTubePlayer.PlaylistEventListener() {
                             @Override
                             public void onPrevious() {
@@ -138,6 +141,7 @@ public class YoutubeActivity extends RobotActivity {
                                 robotAPI.robot.setExpression(RobotFace.DEFAULT);
                             }
                         });
+
                     }
 
                     @Override
@@ -164,7 +168,7 @@ public class YoutubeActivity extends RobotActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        robotAPI.robot.speak("好喔，馬上為你播放清單");
+        robotAPI.robot.speak("好喔，馬上為你播放歌曲");
         robotAPI.robot.setExpression(RobotFace.DEFAULT);
     }
 

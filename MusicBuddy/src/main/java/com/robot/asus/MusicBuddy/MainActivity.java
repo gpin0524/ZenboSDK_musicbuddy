@@ -81,6 +81,7 @@ public class MainActivity extends RobotActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        robotAPI.robot.setExpression(RobotFace.DEFAULT);
 
         context = this;
         mTextView = findViewById(R.id.textView);
@@ -104,12 +105,12 @@ public class MainActivity extends RobotActivity {
 
         // close faical
         //robotAPI.robot.setExpression(com.asus.robotframework.API.RobotFace.HIDEFACE);
-        robotAPI.robot.setExpression(RobotFace.DEFAULT);
+        robotAPI.robot.setExpression(RobotFace.ACTIVE);
         // jump dialog domain
         robotAPI.robot.jumpToPlan(DOMAIN, "ThisPlanLaunchingThisApp");
 
         // listen user utterance
-        robotAPI.robot.speakAndListen("歡迎使用Music Buddy，請問你要在什麼狀態下聽音樂呢？", new SpeakConfig().timeout(20));
+        robotAPI.robot.speakAndListen("請問你要在什麼狀態下聽音樂呢？", new SpeakConfig().timeout(20));
     }
 
     @Override
