@@ -96,20 +96,61 @@ public class YoutubeActivity extends RobotActivity {
 
                             @Override
                             public void onVideoStarted() {
-                                robotAPI.robot.setExpression(RobotFace.SINGING);
-                                robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
-                                robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
-                                robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
-                                List<Integer> playActionItemList = new ArrayList<>();
-                                playActionItemList.add(15); // Dance_b_1_loop
-                                playActionItemList.add(17); // Music_1_loop
-                                playActionItemList.add(21); // Dance_s_1_loop
-                                playActionItemList.add(24); //  Dance_2_loop
-                                playActionItemList.add(27); // Dance_3_loop
-                                int action = playActionItemList.get((int)(Math.random()*(playActionItemList.size() - 1)));
-                                robotAPI.utility.playAction(action);
-                                Log.d(TAG, "onVideoStarted: action = " + action);
+                                switch (situation){
+                                    case "Work":
+                                        robotAPI.robot.setExpression(RobotFace.SINGING);
+                                        robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
+                                        robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,30,10,5);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                        break;
 
+                                    case "Relax":
+                                        robotAPI.robot.setExpression(RobotFace.SINGING);
+                                        robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
+                                        robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+
+                                        List<Integer> playActionItemListR = new ArrayList<>();
+                                        playActionItemListR.add(15); // Dance_b_1_loop 點頭轉圈
+                                        playActionItemListR.add(17); // Music_1_loop 點頭擺動
+                                        //playActionItemList.add(21); // Dance_s_1_loop  點頭
+                                        playActionItemListR.add(24); //  Dance_2_loop  搖頭轉圈
+                                        playActionItemListR.add(27); // Dance_3_loop 轉圈
+                                        //playActionItemList.add(25); // Shake_head_4_loop
+                                        playActionItemListR.add(26); // Head_twist_1_loop
+                                        int actionR = playActionItemListR.get((int)(Math.random()*(playActionItemListR.size() - 1)));
+                                        robotAPI.utility.playAction(actionR);
+                                        Log.d(TAG, "onVideoStarted: action = " + actionR);
+                                        break;
+                                    case "Sleep":
+                                        robotAPI.robot.setExpression(RobotFace.SINGING);
+                                        robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0x00d031);
+                                        robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                        robotAPI.wheelLights.startCharging(WheelLights.Lights.SYNC_BOTH,0,1,WheelLights.Direction.DIRECTION_FORWARD,20);
+                                        robotAPI.wheelLights.startBreathing(WheelLights.Lights.SYNC_BOTH,0xFF9000,20,10,0);
+                                        break;
+                                    case "Depress":
+                                        robotAPI.wheelLights.turnOff(WheelLights.Lights.SYNC_BOTH,0xff);
+                                        robotAPI.robot.setExpression(RobotFace.SINGING);
+                                        robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xFF9000);
+                                        robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 10);
+                                        robotAPI.wheelLights.startCharging(WheelLights.Lights.SYNC_BOTH,3,2,WheelLights.Direction.DIRECTION_FORWARD,20);
+
+                                        List<Integer> playActionItemList = new ArrayList<>();
+                                        playActionItemList.add(15); // Dance_b_1_loop 點頭轉圈
+                                        playActionItemList.add(17); // Music_1_loop 點頭擺動
+                                        //playActionItemList.add(21); // Dance_s_1_loop  點頭
+                                        playActionItemList.add(24); //  Dance_2_loop  搖頭轉圈
+                                        playActionItemList.add(27); // Dance_3_loop 轉圈
+                                        //playActionItemList.add(25); // Shake_head_4_loop
+                                        playActionItemList.add(26); // Head_twist_1_loop
+                                        int action = playActionItemList.get((int)(Math.random()*(playActionItemList.size() - 1)));
+                                        robotAPI.utility.playAction(action);
+                                        Log.d(TAG, "onVideoStarted: action = " + action);
+                                        break;
+                                }
                             }
 
                             @Override

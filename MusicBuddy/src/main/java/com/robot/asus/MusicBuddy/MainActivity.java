@@ -175,7 +175,6 @@ public class MainActivity extends RobotActivity {
             text = "onResult: " + jsonObject.toString();
             android.util.Log.d(TAG, text);
 
-
             String sIntentionID = RobotUtil.queryListenResultJson(jsonObject, "IntentionId");
             Log.d(TAG, "Intention Id = " + sIntentionID);
 
