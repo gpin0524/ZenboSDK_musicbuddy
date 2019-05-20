@@ -101,14 +101,14 @@ public class YoutubeActivity extends RobotActivity {
                                         robotAPI.robot.setExpression(RobotFace.SINGING);
                                         robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
                                         robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,30,10,5);
-                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.SYNC_BOTH,0xff, 25);
                                         break;
 
                                     case "Relax":
                                         robotAPI.robot.setExpression(RobotFace.SINGING);
                                         robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xffff00);
                                         robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
-                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.SYNC_BOTH,0xff, 25);
 
                                         List<Integer> playActionItemListR = new ArrayList<>();
                                         playActionItemListR.add(15); // Dance_b_1_loop 點頭轉圈
@@ -126,7 +126,7 @@ public class YoutubeActivity extends RobotActivity {
                                         robotAPI.robot.setExpression(RobotFace.SINGING);
                                         robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0x00d031);
                                         robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
-                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 25);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.SYNC_BOTH,0xff, 25);
                                         robotAPI.wheelLights.startCharging(WheelLights.Lights.SYNC_BOTH,0,1,WheelLights.Direction.DIRECTION_FORWARD,20);
                                         robotAPI.wheelLights.startBreathing(WheelLights.Lights.SYNC_BOTH,0xFF9000,20,10,0);
                                         break;
@@ -135,7 +135,7 @@ public class YoutubeActivity extends RobotActivity {
                                         robotAPI.robot.setExpression(RobotFace.SINGING);
                                         robotAPI.wheelLights.setColor(WheelLights.Lights.SYNC_BOTH,0xff,0xFF9000);
                                         robotAPI.wheelLights.startBlinking(WheelLights.Lights.SYNC_BOTH,10,5,5,7);
-                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.ASYNC_RIGHT,0xff, 10);
+                                        robotAPI.wheelLights.setBrightness(WheelLights.Lights.SYNC_BOTH,0xff, 10);
                                         robotAPI.wheelLights.startCharging(WheelLights.Lights.SYNC_BOTH,3,2,WheelLights.Direction.DIRECTION_FORWARD,20);
 
                                         List<Integer> playActionItemList = new ArrayList<>();
