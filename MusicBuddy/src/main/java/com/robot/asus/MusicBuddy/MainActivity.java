@@ -110,7 +110,7 @@ public class MainActivity extends RobotActivity {
         robotAPI.robot.jumpToPlan(DOMAIN, "ThisPlanLaunchingThisApp");
 
         // listen user utterance
-        robotAPI.robot.speakAndListen("請問你要在什麼狀態下聽音樂呢？", new SpeakConfig().timeout(20));
+        robotAPI.robot.speakAndListen("請問你要在什麼情境下聽音樂呢？", new SpeakConfig().timeout(20));
     }
 
     @Override
